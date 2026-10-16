@@ -1,0 +1,14 @@
+{
+  "name": "DevChart 暗房工作台",
+  "short_name": "DevChart",
+  "description": "黑白胶片显影配方、三段计时、配液计算与暗房工具",
+  "lang": "zh-CN",
+  "start_url": "./#recipes",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f2efe7",
+  "theme_color": "#171714",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
