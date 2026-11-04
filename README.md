@@ -1,12 +1,21 @@
-# DevChart 暗房工作台
+<p align="center">
+  <img src="assets/favicon.svg" width="104" height="104" alt="DevChart 暗房工作台 标志">
+</p>
+<h1 align="center">DevChart 暗房工作台</h1>
+<p align="center">查配方、配药液、分段计时，建立自己的黑白冲洗流程。</p>
+<p align="center">
+  <a href="#界面导览">界面导览</a> ·
+  <a href="#快速体验">快速体验</a> ·
+  <a href="#本地预览">本地预览</a> ·
+  <a href="#离线与安装">离线与安装</a> ·
+  <a href="#本地数据与隐私">数据与隐私</a>
+</p>
 
 `DevChartWebStatic` 是一个纯 HTML / CSS / JavaScript 的黑白胶片冲洗工具，不依赖 ASP.NET、Node.js、数据库或在线接口。它可以直接部署到 GitHub Pages，也可以安装到手机主屏幕离线使用。
 
 > 显影数据来自 [The Massive Dev Chart](https://www.digitaltruth.com/devchart.php) 的本地缓存。配方、换算和估算结果只应作为起点；实际操作前请核对胶片、显影液、定影液的厂商说明，并通过测试建立自己的稳定流程。
 
 ![DevChart 配方检索：关键词、多条件筛选和可点击带入计时器的显影时间](docs/screenshots/recipes.webp)
-
-[界面导览](#界面导览) · [快速体验](#快速体验) · [本地预览](#本地预览) · [离线与安装](#离线与安装)
 
 当前快照包含 **15,307 条配方、360 个胶片名称、237 个显影液名称**，数据生成于 **2026-10-16**，不代表来源站的实时更新。站点无需构建，运行时只使用本仓库内的静态文件。
 
