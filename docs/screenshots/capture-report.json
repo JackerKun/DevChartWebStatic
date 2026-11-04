@@ -1,0 +1,55 @@
+{
+  "capturedAt": "2026-11-04T07:36:15.846Z",
+  "source": "bundled data/charts.json; isolated demo log",
+  "logExportVerified": true,
+  "shots": [
+    {
+      "name": "recipes",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 56110
+    },
+    {
+      "name": "timer",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 55218
+    },
+    {
+      "name": "chemistry",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 52230
+    },
+    {
+      "name": "tools",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 61286
+    },
+    {
+      "name": "wash-guide",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 17128
+    },
+    {
+      "name": "logbook",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 55938
+    },
+    {
+      "name": "mobile-recipes",
+      "width": 390,
+      "height": 844,
+      "bytes": 16450
+    },
+    {
+      "name": "mobile-timer",
+      "width": 390,
+      "height": 844,
+      "bytes": 22008
+    }
+  ]
+}

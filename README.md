@@ -4,6 +4,79 @@
 
 > 显影数据来自 [The Massive Dev Chart](https://www.digitaltruth.com/devchart.php) 的本地缓存。配方、换算和估算结果只应作为起点；实际操作前请核对胶片、显影液、定影液的厂商说明，并通过测试建立自己的稳定流程。
 
+![DevChart 配方检索：关键词、多条件筛选和可点击带入计时器的显影时间](docs/screenshots/recipes.webp)
+
+[界面导览](#界面导览) · [快速体验](#快速体验) · [本地预览](#本地预览) · [离线与安装](#离线与安装)
+
+当前快照包含 **15,307 条配方、360 个胶片名称、237 个显影液名称**，数据生成于 **2026-10-16**，不代表来源站的实时更新。站点无需构建，运行时只使用本仓库内的静态文件。
+
+## 快速体验
+
+1. 按下方“本地预览”启动站点，在“配方”中搜索胶片或显影液，并按规格、ISO、温度缩小范围。
+2. 点击结果中对应规格的时间，核对配方信息和三段时长，再进入计时。
+3. 在“配液”输入目标总量与稀释比例；在“助手”使用所需的换算、容量或水洗工具。
+4. 把实际使用参数和结果写入“冲洗记录本”，定期导出 JSON 备份。
+
+## 界面导览
+
+以下截图来自真实浏览器：配方使用仓库内的数据，记录本使用明确标注的演示条目。没有修改或伪造工具计算结果；示例展示操作入口，不构成胶片与药液的推荐组合。点击图片可查看大图。
+
+### 配方检索：把对应规格的时间带入流程
+
+顶部关键词与六项筛选可以组合使用；桌面表格中分别显示 35mm、120 和页片的时间。点选某一栏的时间后，会跳转到计时页并带入配方。分享当前 URL 可以保留筛选条件。
+
+首页截图展示 HP5 关键词查询。时间范围、双浴时间等写法会按现有规则转换，开始前仍需人工核对。
+
+### 三段计时：核对配方，逐段确认换液
+
+**入口：** 配方结果的时间按钮，或顶部“计时”。显影、停影、定影分别设置；阶段完成后会停下等待确认，再继续下一段。
+
+![三段计时工作区：带入的配方、剩余时间、各阶段设置及搅动提醒](docs/screenshots/timer.webp)
+
+### 配液：总量与多组分比例一起算
+
+**入口：** 顶部“配液”。输入最终总量和 `1+12`、`1:12` 或 `1+1+100` 等比例，结果按组分显示；快捷按钮适合常用罐量。截图使用三组分比例展示界面，并非推荐配方。
+
+![配液计算器：500 mL 总量、三组分比例和各组分体积结果](docs/screenshots/chemistry.webp)
+
+<details>
+<summary>暗房助手：温度换算、迫冲减感、定影及其他工具</summary>
+
+**入口：** “助手”。各工具独立输入参数，可继续向下滚动使用互易律、试条、罐量、页片缺口、记录本和清单。参考来源与适用边界见下文原有功能说明。
+
+![暗房助手：温度时间换算、迫冲减感估算和定影工作液管理](docs/screenshots/tools.webp)
+
+</details>
+
+<details>
+<summary>水洗向导：完成当前动作，再确认下一步</summary>
+
+**入口：** 助手 → 节水水洗 → 开始向导。大字显示当前倒转步骤，完成后手动确认；可随时退出。实际操作请核对所用胶片和药液的说明。
+
+![全屏水洗步骤提示：当前倒转次数、完成确认与退出向导](docs/screenshots/wash-guide.webp)
+
+</details>
+
+<details>
+<summary>冲洗记录本：保留参数与结果，导出备份</summary>
+
+**入口：** 助手页面下方“冲洗记录本”。填写实际参数、观察结果和备注，保存在当前浏览器；支持 JSON 导入 / 导出与 CSV 导出。截图中的条目仅为界面演示，已通过真实 JSON 下载验证。
+
+![冲洗记录本：演示记录、结果备注以及 JSON 和 CSV 备份入口](docs/screenshots/logbook.webp)
+
+</details>
+
+### 手机界面：卡片检索与计时工作区
+
+手机上通过底部导航切换工具；检索结果以卡片呈现，仍可点击对应规格的时间带入计时器。截图使用 390 × 844 视口。
+
+<p align="center">
+  <img src="docs/screenshots/mobile-recipes.webp" width="260" alt="手机配方结果卡片：胶片、显影液及可点击的各规格时间">
+  <img src="docs/screenshots/mobile-timer.webp" width="260" alt="手机计时界面：带入配方与三段计时控制">
+</p>
+
+截图资产和复现方法见 [截图说明](docs/screenshots/README.md)。截图流程使用隔离浏览器，不读取已有冲洗记录。
+
 ## 功能
 
 ### 配方检索
@@ -81,16 +154,18 @@
 不能直接双击 `index.html`，因为浏览器通常会阻止 `file://` 页面读取 JSON。请在仓库根目录启动静态服务器：
 
 ```bash
-python3 -m http.server 8080 --directory DevChartWebStatic
+git clone https://github.com/JackerKun/DevChartWebStatic.git
+cd DevChartWebStatic
+python3 -m http.server 8080 --bind 127.0.0.1
 ```
 
 然后访问 <http://localhost:8080/>。
 
-站点没有构建步骤。修改 HTML、CSS 或 JavaScript 后刷新浏览器即可。如果旧版 Service Worker 缓存影响调试，可在开发者工具的 Application / Storage 中清除站点数据后重新加载。
+站点没有构建步骤。修改 HTML、CSS 或 JavaScript 后刷新浏览器即可。如旧版 Service Worker 影响调试，可在开发者工具中更新或注销 Service Worker，再刷新页面。清除整个站点数据会同时删除本机记录，操作前请先导出记录本备份。
 
 ## 更新显影数据
 
-仓库根目录执行：
+以下命令属于父工程 `DevChartSpider` 的抓取器，不包含在当前独立静态仓库中。仅使用本网站不需要 .NET 或执行抓取。若持有完整父工程，请在包含 `DevChartSpiderConsole` 的父工程根目录执行：
 
 ```bash
 # 使用现有缓存，只补抓缺失胶片并重新导出静态数据
@@ -124,13 +199,11 @@ DevChartWebStatic/data/charts.json
 
 ## GitHub Pages 部署
 
-仓库已包含 `.github/workflows/pages.yml`。工作流会把 `DevChartWebStatic` 作为完整的 Pages artifact 发布，无需构建。
+当前独立仓库没有附带 `.github/workflows/pages.yml`，不要把父工程的工作流路径当成本站运行依赖。部署内容是**本仓库根目录**，无需打包或构建。
 
-1. 把代码推送到 GitHub。
-2. 在仓库 **Settings → Pages** 中把 Source 设为 **GitHub Actions**。
-3. 手动运行工作流，或向其监听的分支推送提交。
+在 GitHub 的仓库 **Settings → Pages** 中配置站点发布来源；若使用分支发布，选择实际部署分支及根目录。若使用 GitHub Actions，自行配置工作流上传本仓库根目录为站点产物。
 
-`index.html`、`manifest.webmanifest`、`sw.js` 和 `.nojekyll` 必须一起发布。站点使用相对路径，所以既可以部署在用户主页根目录，也可以部署在项目子路径。
+发布时保留 `index.html`、`assets/`、`data/charts.json`、`manifest.webmanifest`、`sw.js` 和 `.nojekyll`。资源使用相对路径，可放在域名根目录或项目子路径。发布后检查配方数据能否加载，再测试离线功能。发布来源设置可参考 [GitHub Pages 官方说明](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。
 
 ## 离线与安装
 
@@ -166,6 +239,8 @@ DevChartWebStatic/
 │   ├── app.js                 # 检索、计时、计算器与本地状态
 │   ├── styles.css             # 桌面与手机响应式样式
 │   └── favicon.svg
+├── docs/screenshots/          # 界面导览与捕获记录
+├── tools/screenshots/         # 可选的截图维护工具
 └── data/
     └── charts.json            # 网页唯一的显影数据源
 ```
